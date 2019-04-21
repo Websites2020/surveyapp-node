@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+        <nav class="navbar navbar-inverse">
+                <div class="container-fluid">
+                  <div class="navbar-header">
+                    <a class="navbar-brand" href="/">Favorite Color Survey</a>
+                  </div>
+                  <ul class="nav navbar-nav">
+                    <!-- <li class="active"><a href="/">Home</a></li>
+                    <li><a href="#">Page 1</a></li>
+                    <li><a href="#">Page 2</a></li> -->
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right">
+                    <!-- <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
+                    <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                  </ul>
+                </div>
+              </nav> 
+    <div class="container">
+        <div class="row">
+            <div class=col-md-3></div>
+            <div class=col-md-6>
+                <h2>Choose Your Favorite Color</h2>
+                <form action="/survey" method="post">
+                    <div class="radio">
+                        <label for="inputlg1" style="font-size: 20px; background: blue; color: white; width: 100%; padding: 3px 3px 3px 0; margin: 5px;"><input id="inputlg1" style="height: 15px; width: 15px;" type="radio" name="color" value="blue"/> &nbsp;Blue</label>
+                    </div>
+                    <div class="radio">
+                        <label for="inputlg2" style="font-size: 20px; background: red; color: white; width: 100%; padding: 3px 3px 3px 0; margin: 5px;"><input id="inputlg2" style="height: 15px; width: 15px;" type="radio" name="color" value="Red"/> &nbsp;Red</label>
+                    </div>
+                    <div class="radio">
+                        <label for="inputlg3" style="font-size: 20px; background: green; color: white; width: 100%; padding: 3px 3px 3px 0; margin: 5px;"><input id="inputlg3" style="height: 15px; width: 15px;" type="radio" name="color" value="Green"/> &nbsp;Green</label>
+                    </div>
+                    <div class="radio">
+                        <label for="inputlg4" style="font-size: 20px; background: yellow; width: 100%; padding: 3px 3px 3px 0; margin: 5px;"><input id="inputlg4" style="height: 15px; width: 15px;" type="radio" name="color" value="Yellow"/> &nbsp;Yellow</label>
+                    </div>
+                    <br>
+                    <div>
+                        <input type="submit" class="btn btn-primary" value="Submit"/>
+                    </div>
+                </form>
+            </div>
+            <div class=col-md-3></div>
+        </div>
+    </div>
+</body>
+</html>
