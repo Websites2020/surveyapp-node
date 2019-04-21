@@ -6,7 +6,7 @@ const LocalStrategy = require('passport-local').Strategy;
 const bodyParser = require('body-parser');
 const session = require('express-session');
 var MongoClient = require('mongodb').MongoClient;
-var url = MONGODB_URI;
+var url = process.env.MONGODB_URI;
 // var url = "mongodb://localhost:27017/mydb";
 
 var users = [{"id":111, "username":"admin", "password":"admin"}];
