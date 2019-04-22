@@ -6,8 +6,11 @@ const LocalStrategy = require('passport-local').Strategy;
 const bodyParser = require('body-parser');
 const session = require('express-session');
 var MongoClient = require('mongodb').MongoClient;
-var url = process.env.MONGODB_URI;
+var url = process.env.MONGODB_URI;s
+var dbname = "heroku_zcg4h7lr";
 // var url = "mongodb://localhost:27017/mydb";
+// var dbname = "mydb";
+
 
 var users = [{"id":111, "username":"admin", "password":"admin"}];
 
@@ -83,7 +86,7 @@ app.post('/survey', function (req, res) {
     MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
         console.log(req.body.color);
         if (err) throw err;
-        var dbo = db.db("heroku_zcg4h7lr");
+        var dbo = db.db(dbname);
         var myquery = { name: req.body.color };
         var newvalues = { $inc: { count: 1 } };
         dbo.collection("colors").updateOne(myquery, newvalues, function(err, response) {
@@ -97,7 +100,7 @@ app.post('/survey', function (req, res) {
 app.get('/find', function (req, res) {
     MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
         if (err) throw err;
-        var dbo = db.db("heroku_zcg4h7lr");
+        var dbo = db.db(dbname);
         dbo.collection("colors").find({}).toArray(function(err, result) {
           if (err) throw err;
           console.log(result);
@@ -107,40 +110,42 @@ app.get('/find', function (req, res) {
       });
 });
 
-app.get('/create', function (req, res) {
-    MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
-        console.log("Database created!");
-        db.close();
-    });
-    MongoClient.connect(url, function(err, db) {
-        if (err) throw err;
-        var dbo = db.db("heroku_zcg4h7lr");
-        var myobj = [
-          { _id: 1, name: 'Blue', count: 0},
-          { _id: 2, name: 'Red', count: 0},
-          { _id: 3, name: 'Green', count: 0},
-          { _id: 4, name: 'Yellow', count: 0}
-        ];
-        dbo.collection("colors").insertMany(myobj, function(err, res) {
-          if (err) throw err;
-          console.log("Number of documents inserted: " + res.insertedCount);
-          db.close();
-        });
-    }); 
-});
+/* CREATE AND DELETE COLLECTION */
 
-app.get('/destroy', function (req, res) {
-    MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
-        if (err) throw err;
-        var dbo = db.db("heroku_zcg4h7lr");
-        dbo.collection("colors").drop(function(err, delOK) {
-          if (err) throw err;
-          if (delOK) console.log("Collection deleted");
-          db.close();
-        });
-      }); 
-});
+// app.get('/create', function (req, res) {
+//     MongoClient.connect(url, function(err, db) {
+//         if (err) throw err;
+//         console.log("Database created!");
+//         db.close();
+//     });
+//     MongoClient.connect(url, function(err, db) {
+//         if (err) throw err;
+//         var dbo = db.db(dbname);
+//         var myobj = [
+//           { _id: 1, name: 'Blue', count: 0},
+//           { _id: 2, name: 'Red', count: 0},
+//           { _id: 3, name: 'Green', count: 0},
+//           { _id: 4, name: 'Yellow', count: 0}
+//         ];
+//         dbo.collection("colors").insertMany(myobj, function(err, res) {
+//           if (err) throw err;
+//           console.log("Number of documents inserted: " + res.insertedCount);
+//           db.close();
+//         });
+//     }); 
+// });
+
+// app.get('/destroy', function (req, res) {
+//     MongoClient.connect(url, { useNewUrlParser: true }, function(err, db) {
+//         if (err) throw err;
+//         var dbo = db.db(dbname);
+//         dbo.collection("colors").drop(function(err, delOK) {
+//           if (err) throw err;
+//           if (delOK) console.log("Collection deleted");
+//           db.close();
+//         });
+//       }); 
+// });
 
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
