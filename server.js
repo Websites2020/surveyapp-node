@@ -6,10 +6,10 @@ const LocalStrategy = require('passport-local').Strategy;
 const bodyParser = require('body-parser');
 const session = require('express-session');
 var MongoClient = require('mongodb').MongoClient;
-// var url = process.env.MONGODB_URI;
-// var dbname = "heroku_zcg4h7lr";
-var url = "mongodb://localhost:27017/mydb";
-var dbname = "mydb";
+var url = process.env.MONGODB_URI;
+var dbname = "heroku_zcg4h7lr";
+// var url = "mongodb://localhost:27017/mydb";
+// var dbname = "mydb";
 
 
 var users = [{"id":111, "username":"admin", "password":"admin"}];
